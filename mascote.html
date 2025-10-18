@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mascotes/mascote.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <title>Mascote Digital</title>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <!-- Mascot Central Display -->
+    <section class="mascot-central" aria-labelledby="mascot-display-title">
+      
+      <div class="mascot-display">
+        <div id="mascote" class="mascot-emoji" role="img" aria-label="Ícone do mascote"></div>
+        <div class="mascot-info">
+          <div class="mascot-name" id="mascotName" aria-live="polite">Mascote</div>
+          <div class="mascot-mood" id="mascotMood" aria-live="polite">😊 Feliz</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Status and Actions Panel -->
+    <aside class="status-actions-panel" aria-labelledby="status-actions-title">
+      <!-- Unified Status and Actions Section -->
+      <section class="unified-section">
+        <h3 class="section-title" id="status-actions-title">📊 Status e 🎮 Ações</h3>
+        <div class="status-grid">
+          <div class="status-item">
+            <div class="status-header">
+              <span class="status-icon" id="statusIconFome">🍎</span>
+              <span class="status-label">Fome</span>
+              <span class="status-value" id="statusFome">100</span>
+            </div>
+            <div class="status-bar-container">
+              <div class="status-bar"><span id="barFome"></span></div>
+            </div>
+          </div>
+
+          <div class="status-item">
+            <div class="status-header">
+              <span class="status-icon" id="statusIconSede">💧</span>
+              <span class="status-label">Sede</span>
+              <span class="status-value" id="statusSede">100</span>
+            </div>
+            <div class="status-bar-container">
+              <div class="status-bar"><span id="barSede"></span></div>
+            </div>
+          </div>
+
+          <div class="status-item">
+            <div class="status-header">
+              <span class="status-icon" id="statusIconAnimo">🎈</span>
+              <span class="status-label">Ânimo</span>
+              <span class="status-value" id="statusAnimo">100</span>
+            </div>
+            <div class="status-bar-container">
+              <div class="status-bar"><span id="barAnimo"></span></div>
+            </div>
+          </div>
+
+          <div class="status-item">
+            <div class="status-header">
+              <span class="status-icon" id="statusIconCansaco">😴</span>
+              <span class="status-label">Cansaço</span>
+              <span class="status-value" id="statusCansaco">0</span>
+            </div>
+            <div class="status-bar-container">
+              <div class="status-bar"><span id="barCansaco"></span></div>
+            </div>
+          </div>
+
+          <div class="status-item">
+            <div class="status-header">
+              <span class="status-icon" id="statusIconIntimidade">💕</span>
+              <span class="status-label">Intimidade</span>
+              <span class="status-value" id="statusIntimidade">0</span>
+            </div>
+            <div class="status-bar-container">
+              <div class="status-bar"><span id="barIntimidade"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button id="btnComida" class="action-btn food-btn" aria-label="Alimentar o mascote">
+            <span class="btn-icon" role="img" aria-hidden="true">🍎</span>
+            <span class="btn-text">Alimentar</span>
+          </button>
+          <button id="btnAgua" class="action-btn water-btn" aria-label="Dar água ao mascote">
+            <span class="btn-icon" role="img" aria-hidden="true">💧</span>
+            <span class="btn-text">Dar Água</span>
+          </button>
+          <button id="btnBrincar" class="action-btn play-btn" aria-label="Brincar com o mascote">
+            <span class="btn-icon" role="img" aria-hidden="true">🎈</span>
+            <span class="btn-text">Brincar</span>
+          </button>
+          <button id="btnDormir" class="action-btn sleep-btn" aria-label="Fazer o mascote dormir">
+            <span class="btn-icon" role="img" aria-hidden="true">😴</span>
+            <span class="btn-text">Dormir</span>
+          </button>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Floating Control Buttons -->
+  <div class="floating-controls">
+    <button class="control-btn chat-toggle-btn" id="chatToggleBtn" aria-label="Abrir chat com o mascote" title="Chat com o mascote">
+      <span class="control-icon" role="img" aria-hidden="true">💬</span>
+    </button>
+    <button class="control-btn missions-toggle-btn" id="missionsToggleBtn" aria-label="Ver missões diárias" title="Missões diárias">
+      <span class="control-icon" role="img" aria-hidden="true">🎯</span>
+    </button>
+  </div>
+
+  <!-- Chat Modal -->
+  <div id="chatModal" class="modal-overlay hidden">
+    <div class="modal-content chat-modal">
+      <div class="modal-header">
+        <h3>💬 Chat com o Mascote</h3>
+        <button class="modal-close" id="chatModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="chat-messages" id="chatMessages">
+          <div class="message mascot-message">
+            <div class="message-avatar">🐸</div>
+            <div class="message-content">
+              <div class="message-text">Olá! Eu sou seu mascote. Vamos conversar?</div>
+              <div class="message-time">Agora</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-replies" id="quickReplies">
+          <button class="quick-reply-btn" data-reply="Oi! Como você está?">Oi! Como você está?</button>
+          <button class="quick-reply-btn" data-reply="Vamos brincar!">Vamos brincar!</button>
+          <button class="quick-reply-btn" data-reply="Me conte uma história">Me conte uma história</button>
+          <button class="quick-reply-btn" data-reply="Qual seu animal favorito?">Qual seu animal favorito?</button>
+        </div>
+
+        <div class="chat-input-area">
+          <div class="input-container">
+            <input id="chatInput" type="text" placeholder="Digite sua mensagem..." />
+            <button id="chatButton" class="send-btn">
+              <span class="send-icon">📤</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Missions Modal -->
+  <div id="missionsModal" class="modal-overlay hidden">
+    <div class="modal-content missions-modal">
+      <div class="modal-header">
+        <h3>🎯 Missões Diárias</h3>
+        <button class="modal-close" id="missionsModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="missions-list">
+          <div id="missoesContainer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini-Game Modals -->
+  <!-- Alimentar Mini-Game Modal -->
+  <div id="alimentarModal" class="modal-overlay hidden">
+    <div class="modal-content minigame-modal">
+      <div class="modal-header">
+        <h3>🍎 Alimentar o Mascote</h3>
+        <button class="modal-close" id="alimentarModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="minigame-instructions">Clique nas frutas caindo para alimentá-lo!</div>
+        
+        <div class="minigame-area" id="alimentarGameArea">
+          <div class="catcher" id="catcher">🐸</div>
+        </div>
+        <div class="minigame-score">Pontos: <span id="alimentarScore">0</span></div>
+        <button class="minigame-start-btn" id="alimentarStartBtn">Começar</button>
+      </div>
+    </div>
+  </div>
+  <!-- Alimentar Instructions Modal -->
+  <div id="alimentarInstructionsModal" class="modal-overlay hidden">
+    <div class="modal-content instructions-modal">
+      <div class="modal-header">
+        <h3>Instruções - Alimentar</h3>
+        <button class="modal-close" id="alimentarInstructionsClose">✕</button>
+      </div>
+      <div class="modal-body">
+        Clique nas frutas que caem para alimentar seu mascote. Quanto mais frutas pegar, mais pontos você ganha!
+      </div>
+    </div>
+  </div>
+
+  <!-- Dar Água Mini-Game Modal -->
+  <div id="aguaModal" class="modal-overlay hidden">
+    <div class="modal-content minigame-modal">
+      <div class="modal-header">
+        <h3>💧 Dar Água ao Mascote</h3>
+        <button class="modal-close" id="aguaModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="minigame-instructions">Clique para encher o copo no momento certo!</div>
+        
+        <div class="minigame-area" id="aguaGameArea">
+          <div class="glass" id="glass">
+            <div class="water" id="water"></div>
+          </div>
+          <div class="pour-indicator" id="pourIndicator">Clique quando a água estiver no nível ideal!</div>
+        </div>
+        <button class="minigame-start-btn" id="aguaStartBtn">Começar</button>
+      </div>
+    </div>
+  </div>
+  <!-- Agua Instructions Modal -->
+  <div id="aguaInstructionsModal" class="modal-overlay hidden">
+    <div class="modal-content instructions-modal">
+      <div class="modal-header">
+        <h3>Instruções - Dar Água</h3>
+        <button class="modal-close" id="aguaInstructionsClose">✕</button>
+      </div>
+      <div class="modal-body">
+        Clique para encher o copo no momento certo. Tente acertar o nível ideal para ganhar pontos!
+      </div>
+    </div>
+  </div>
+
+  <!-- Brincar Mini-Game Modal -->
+  <div id="brincarModal" class="modal-overlay hidden">
+    <div class="modal-content minigame-modal">
+      <div class="modal-header">
+        <h3>🎈 Brincar com o Mascote</h3>
+        <button class="modal-close" id="brincarModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="minigame-instructions">Encontre os pares de cartas!</div>
+        
+        <div class="minigame-area" id="brincarGameArea">
+          <div class="memory-grid" id="memoryGrid"></div>
+        </div>
+        <div class="minigame-score">Tentativas: <span id="brincarAttempts">0</span></div>
+        <button class="minigame-start-btn" id="brincarStartBtn">Começar</button>
+      </div>
+    </div>
+  </div>
+  <!-- Brincar Instructions Modal -->
+  <div id="brincarInstructionsModal" class="modal-overlay hidden">
+    <div class="modal-content instructions-modal">
+      <div class="modal-header">
+        <h3>Instruções - Brincar</h3>
+        <button class="modal-close" id="brincarInstructionsClose">✕</button>
+      </div>
+      <div class="modal-body">
+        Encontre os pares de cartas iguais. Clique em duas cartas para virá-las. Tente lembrar onde estão os pares!
+      </div>
+    </div>
+  </div>
+
+  <!-- Dormir Mini-Game Modal -->
+  <div id="dormirModal" class="modal-overlay hidden">
+    <div class="modal-content minigame-modal">
+      <div class="modal-header">
+        <h3>😴 Dormir com o Mascote</h3>
+        <button class="modal-close" id="dormirModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="minigame-instructions">Clique nas estrelas aparecendo para ajudar o mascote a dormir!</div>
+        
+        <div class="minigame-area" id="dormirGameArea">
+          <div class="stars-container" id="starsContainer"></div>
+        </div>
+        <div class="minigame-score">Pontos: <span id="dormirScore">0</span></div>
+        <button class="minigame-start-btn" id="dormirStartBtn">Começar</button>
+      </div>
+    </div>
+  </div>
+  <!-- Dormir Instructions Modal -->
+  <div id="dormirInstructionsModal" class="modal-overlay hidden">
+    <div class="modal-content instructions-modal">
+      <div class="modal-header">
+        <h3>Instruções - Dormir</h3>
+        <button class="modal-close" id="dormirInstructionsClose">✕</button>
+    </div>
+    <div class="modal-body">
+      Clique nas estrelas que aparecem para ajudar seu mascote a dormir. Quanto mais estrelas clicar, melhor o sono!
+    </div>
+  </div>
+
+
+
+  <script src="mascotes/mascote.js"></script>
+</body>
+</html>

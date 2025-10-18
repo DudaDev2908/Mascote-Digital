@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Login - Mascote Digital</title>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <!-- Hero Section -->
+  <div id="heroSection">
+    <div class="hero-content">
+      <h1 id="mainTitle">Bem-vindo ao</h1>
+      <h2 id="subtitle">Mascote Digital</h2>
+      <p id="heroDescription">Entre em sua conta para acessar seu companheiro virtual personalizado</p>
+    </div>
+  </div>
+
+  <div id="loginScreen">
+    <div class="login-container">
+      <div class="login-header">
+        <div class="logo-container">
+          <span class="logo-icon">🎭</span>
+        </div>
+        <h1>Entrar</h1>
+        <p class="login-subtitle">Acesse sua conta para continuar</p>
+      </div>
+
+      <form class="login-form">
+        <div class="input-group">
+          <div class="input-icon">
+            <span class="icon">👤</span>
+          </div>
+          <input type="text" id="username" placeholder="Digite seu usuário" required />
+        </div>
+
+        <div class="input-group">
+          <div class="input-icon">
+            <span class="icon">🔒</span>
+          </div>
+          <input type="password" id="password" placeholder="Digite sua senha" required />
+        </div>
+
+        <div class="captcha-section">
+          <div class="captcha-header">
+            <span class="captcha-icon">🛡️</span>
+            <span class="captcha-label">Verificação de Segurança</span>
+          </div>
+          <div class="captcha">
+            <span id="captchaText"></span>
+            <input type="text" id="captchaInput" placeholder="Digite os caracteres" required />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="loginButton">
+            <span class="button-icon">🚀</span>
+            <span class="button-text">Entrar</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification container -->
+  <div id="notificationContainer"></div>
+
+  <script src="login/login.js"></script>
+</body>
+</html>

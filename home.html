@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Configuração do Mascote</title>
+</head>
+<body>
+    <div id="heroSection">
+        <h1 id="mainTitle">Crie Seu Mascote</h1>
+        <p id="subtitle">Personalize seu companheiro virtual com personalidade única</p>
+    </div>
+
+    <div id="configOptionsRow">
+        <div class="configContainer" id="personalidadeContainer">
+            <div class="containerHeader">
+                <div class="iconWrapper">
+                    <span class="sectionIcon">🎭</span>
+                </div>
+                <h2>Personalidade</h2>
+                <p class="containerDescription">Escolha o temperamento do seu mascote</p>
+            </div>
+            <div id="personalidadeOptions">
+                <button data-personalidade="Animado" class="optionButton">
+                    <span class="emoji">😊</span>
+                    <span class="optionText">Animado</span>
+                    <span class="optionDesc">Sempre feliz e energético</span>
+                </button>
+                <button data-personalidade="Explosivo" class="optionButton">
+                    <span class="emoji">💥</span>
+                    <span class="optionText">Explosivo</span>
+                    <span class="optionDesc">Reações intensas e divertidas</span>
+                </button>
+                <button data-personalidade="Desanimado" class="optionButton">
+                    <span class="emoji">😴</span>
+                    <span class="optionText">Desanimado</span>
+                    <span class="optionDesc">Calmo e relaxado</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="configContainer" id="animalContainer">
+            <div class="containerHeader">
+                <div class="iconWrapper" id="mascoteemoji">
+                    <span class="sectionIcon">🐾</span>
+                </div>
+                <h2>Mascote</h2>
+                <p class="containerDescription">Escolha seu animal favorito</p>
+            </div>
+            <div id="animalOptions">
+                <button data-animal="Sapo" class="optionButton">
+                    <span class="emoji">🐸</span>
+                    <span class="optionText">Sapo</span>
+                </button>
+                <button data-animal="Gato" class="optionButton">
+                    <span class="emoji">🐱</span>
+                    <span class="optionText">Gato</span>
+                </button>
+                <button data-animal="Cachorro" class="optionButton">
+                    <span class="emoji">🐶</span>
+                    <span class="optionText">Cachorro</span>
+                </button>
+                <button data-animal="Tubarao" class="optionButton">
+                    <span class="emoji">🦈</span>
+                    <span class="optionText">Tubarão</span>
+                </button>
+                <button data-animal="Passaro" class="optionButton">
+                    <span class="emoji">🐦</span>
+                    <span class="optionText">Pássaro</span>
+                </button>
+                <button data-animal="Panda" class="optionButton">
+                    <span class="emoji">🐼</span>
+                    <span class="optionText">Panda</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectedButtonsArea">
+        <div id="selectedPersonalidade" class="selectionSlot">
+            <div class="slotLabel">Personalidade Selecionada</div>
+        </div>
+        <div id="selectedAnimal" class="selectionSlot">
+            <div class="slotLabel">Mascote Selecionado</div>
+        </div>
+    </div>
+
+    <div id="nameSection">
+        <div class="containerHeader">
+            <div class="nomeemoji">
+                <span class="sectionIcon">✏️</span>
+            </div>
+            <h2>Nome do Mascote</h2>
+            <p class="containerDescription">Dê um nome especial ao seu companheiro</p>
+        </div>
+        <input type="text" id="mascoteNome" placeholder="Digite o nome do mascote..." maxlength="20" />
+    </div>
+
+    <div id="actionSection">
+        <button id="confirmConfig" class="primaryButton">
+            <span class="buttonIcon">🚀</span>
+            <span class="buttonText">Criar Mascote</span>
+        </button>
+        <button id="skipConfig" class="secondaryButton">
+            <span class="buttonText">Usar Padrão</span>
+        </button>
+    </div>
+
+    <script src="home/home.js"></script>
+</body>
+</html>
