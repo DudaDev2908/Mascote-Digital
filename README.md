@@ -28,10 +28,3 @@ Criar uma ferramenta que vá além do conceito tradicional de IA — que normalm
 
 > O projeto está sendo desenvolvido com foco em **design responsivo**, **animações suaves** e **experiência do usuário (UX)**.
 
----
-
-## 🚀 Como Executar  
-
-1. Clone este repositório:  
-   ```bash
-   git clone https://github.com/seu-usuario/mascote-digital.git
